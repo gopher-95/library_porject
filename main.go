@@ -1,7 +1,18 @@
 package main
 
-import "fmt"
+import (
+	"log"
+	"net/http"
+
+	"github.com/gopher-95/library_porject/pkg/api"
+)
 
 func main() {
-	fmt.Println("Hello from pet_projcet!")
+	api.Init()
+
+	log.Println("Server is running on port 8080!")
+	err := http.ListenAndServe(":8080", api.Mux)
+	if err != nil {
+		panic(err)
+	}
 }
